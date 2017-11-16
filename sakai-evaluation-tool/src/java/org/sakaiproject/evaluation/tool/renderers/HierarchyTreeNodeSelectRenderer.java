@@ -229,6 +229,10 @@ public class HierarchyTreeNodeSelectRenderer {
     private void renderSelectHierarchyNode(UIContainer tofill, EvalHierarchyNode node, int level, EvalViewParameters evalViewParams, Set<String> accessNodeIds, Set<String> parentNodeIds,
            List<String> selectedNodes, List<String> selectedGroups) {
 
+        System.out.println("renderHierarchyNode");
+        System.out.println("-----------------------------------------");
+        System.out.println("node.title: " + node.title);
+        System.out.println("level: " + level);
         //a null "accessNodeIds varaible means the user is admin
         if(parentNodeIds == null || parentNodeIds.contains(node.id) || accessNodeIds.contains(node.id)){
             boolean expanded = renderRow(tofill, "hierarchy-level-row:", level, node, evalViewParams, accessNodeIds, null, false);

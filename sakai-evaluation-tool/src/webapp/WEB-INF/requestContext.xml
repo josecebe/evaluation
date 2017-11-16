@@ -1037,4 +1037,7 @@
         <property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
         <property name="site" ref="sakai-Site" />
     </bean>
+
+    <bean name="hierarchyNodeBean" class="org.sakaiproject.evaluation.tool.HierarchyNodeBean">
+    </bean>
 </beans>

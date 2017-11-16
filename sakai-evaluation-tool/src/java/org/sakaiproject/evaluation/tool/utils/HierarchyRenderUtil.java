@@ -134,6 +134,10 @@ public class HierarchyRenderUtil {
             Map<String, Set<String>> groupsNodesMap, Map<String, EvalHierarchyNode> nodeIdToNode, 
             boolean showGroups, boolean showUsers, String[] expandedNodes) {
     	
+        System.out.println("renderHierarchyNode");
+        System.out.println("-----------------------------------------");
+        System.out.println("node.title: " + node.title);
+        System.out.println("level: " + level);
     	String[] allChildrenNodeIds = node.directChildNodeIds.toArray(new String[node.directChildNodeIds.size()]);
         Map<String, Set<String>> groupsNodesMapAdd = hierarchyLogic.getEvalGroupsForNodes(allChildrenNodeIds);
         groupsNodesMap.putAll(groupsNodesMapAdd);

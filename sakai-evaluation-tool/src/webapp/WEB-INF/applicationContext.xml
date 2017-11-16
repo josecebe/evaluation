@@ -400,4 +400,8 @@
         <property name="viewParamsClass"
             value="org.sakaiproject.evaluation.tool.viewparams.DownloadReportViewParams" />
     </bean>
+
+    <bean parent="requestAddressibleParent">
+        <property name="value" value="hierarchyNodeBean" />
+    </bean>
 </beans>

@@ -18,7 +18,11 @@ import org.sakaiproject.evaluation.logic.EvalCommonLogic;
 import org.sakaiproject.evaluation.tool.renderers.NavBarRenderer;
 import org.sakaiproject.evaluation.tool.utils.HierarchyRenderUtil;
 
+import uk.org.ponder.rsf.builtin.UVBProducer;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIForm;
+import uk.org.ponder.rsf.components.UIInitBlock;
+import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -26,6 +30,7 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import org.sakaiproject.evaluation.tool.viewparams.HierarchyNodeParameters;
+import org.sakaiproject.tool.cover.SessionManager;
 
 /*
  * This producer renders GUI for viewing the Eval Hierarchy as well as 
@@ -75,10 +80,17 @@ public class ControlHierarchyProducer extends EvalCommonProducer implements View
         // start rendering the hierarchy controls
         hierUtil.renderModifyHierarchyTree(tofill, "hierarchy-tree:", false, false, false, expanded);
 
+        UIForm hierarchyForm = UIForm.make(tofill, "hierarchyForm");
+        hierarchyForm.viewparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
+        UIInput idInput = UIInput.make(hierarchyForm, "hierarchyForm-id", "hierarchyNodeBean.id");
+        Object sessionToken = SessionManager.getCurrentSession().getAttribute("sakai.csrf.token");
+        UIInput csrfInput = UIInput.make(hierarchyForm, "csrf", "hierarchyNodeBean.csrfToken", (sessionToken == null ? "" : sessionToken.toString()));
+
+        UIInitBlock.make(tofill, "hierarchyForm-init", "initHierarchyForm", new Object[] {idInput, csrfInput, "hierarchyNodeBean.results"});
+
         // done rendering the hierarchy controls
         UIInternalLink.make(tofill, "done-link", UIMessage.make("controlhierarchy.done"),
                 new SimpleViewParameters(AdministrateProducer.VIEW_ID));
-
     }
     public ViewParameters getViewParameters() {
         return new HierarchyNodeParameters();

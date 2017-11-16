@@ -25,6 +25,7 @@
     <link href="/library/skin/tool_base.css" rsf:id="scr=portal-matter" type="text/css" rel="stylesheet" media="all"/>
     <link href="/library/skin/default/tool.css" rsf:id="scr=portal-matter" type="text/css" rel="stylesheet" media="all"/>
     <script src="/library/js/headscripts.js" rsf:id="scr=portal-matter" type="text/javascript" language="JavaScript"></script>
+    <script type="text/javascript" language="JavaScript" src="../js/hierarchyAjax.js"></script>
     <!-- end standard on all pages -->
     <script type="text/javascript" src="/library/js/spinner.js"></script>
     <link href="../css/evaluation_base.css" type="text/css" rel="stylesheet" media="all" />
@@ -55,7 +56,7 @@
             </thead>
             <tbody>
                 <tr rsf:id="hierarchy-level-row:">
-                    <td rsf:id="node-name" class="noTextIndent"> - Institution Level</td>
+                    <td rsf:id="node-name" class="noTextIndent nodeXX"> - Institution Level</td>
                     <td>
                         <span rsf:id="number-children">3</span>
                         <a rsf:id="add-child-link" class="inlineLink" href="">Add</a>
@@ -71,6 +72,16 @@
             </tbody>
         </table>
     </div>
+
+    <button class="nodeXX">POLE</button>
+
+    <form class="hierarchy-xx" rsf:id="hierarchyForm" style="display:none;">
+        <input type="hidden" class="idField" id="hierarchyForm-id" rsf:id="hierarchyForm-id" value="1"></input>
+        <input type="hidden" class="csrfField" id="csrf" rsf:id="csrf"/>
+    </form>
+
+    <script rsf:id="hierarchyForm-init" type="text/javascript"></script>
+
     <a href="" rsf:id="done-link">Done</a>
 </div>
 </body>
